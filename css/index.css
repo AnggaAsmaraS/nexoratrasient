@@ -92,7 +92,7 @@ header video {
 
 .visi-misi {
   position: relative;
-  background-image: url("/image/about-us.jpg");
+  background-image: url("../image/about-us.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
