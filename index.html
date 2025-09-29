@@ -155,29 +155,27 @@
               data-bs-ride="carousel"
               data-bs-interval="3000"
             >
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img
-                    src="image/1.JPG"
-                    class="d-block w-100 rounded"
-                    alt="Slide 1"
-                  />
-                </div>
-                <div class="carousel-item">
-                  <img
-                    src="image/2.jpeg"
-                    class="d-block w-100 rounded"
-                    alt="Slide 2"
-                  />
-                </div>
-                <div class="carousel-item">
-                  <img
-                    src="image/3.JPG"
-                    class="d-block w-100 rounded"
-                    alt="Slide 3"
-                  />
-                </div>
-              </div>
+             <div class="carousel-inner">
+  <div class="carousel-item active">
+    <img src="image/1.JPG" class="d-block w-100 rounded" alt="Slide 1" />
+  </div>
+  <div class="carousel-item">
+    <img src="image/2.jpeg" class="d-block w-100 rounded" alt="Slide 2" />
+  </div>
+  <div class="carousel-item">
+    <img src="image/3.JPG" class="d-block w-100 rounded" alt="Slide 3" />
+  </div>
+  <div class="carousel-item">
+    <img src="image/pelabuhan.png" class="d-block w-100 rounded" alt="Slide 4" />
+  </div>
+  <div class="carousel-item">
+    <img src="image/kalang-minyak.png" class="d-block w-100 rounded" alt="Slide 5" />
+  </div>
+  <div class="carousel-item">
+    <img src="image/kalang-minyak2.png" class="d-block w-100 rounded" alt="Slide 6" />
+  </div>
+</div>
+
             </div>
           </div>
 
@@ -387,6 +385,18 @@
                 <img src="./image/g-6.png" class="img-fluid rounded sevent">
               </div>
             </div>
+
+           <div class="btn-galery-selengkapnya">
+  <button type="button" class="btn btn-primary d-flex align-items-center gap-2" 
+          data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+    Selengkapnya  
+    <img src="/icon/arrow_forward_24dp_E3E3E3.svg" alt="arrow" width="20" height="20">
+  </button>
+</div>
+
+          
+
+
 
       </div>
     </section>
@@ -763,6 +773,32 @@
       </div>
     </section>
 
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" 
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Gallery</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+  <!-- Video -->
+  <video id="galleryVideo" autoplay muted loop class="bg-video w-100 rounded mb-3">
+    <source data-src="/image/Sunrise Serenity_ Inside the Oil Refinery-VEED (online-video-cutter.com) (1).mp4" type="video/mp4">
+    Browser Anda tidak mendukung video tag.
+  </video>
+
+  <!-- Gallery Images -->
+  <div class="image-modal row g-3" id="galleryContainer">
+</div>
+
+
+    </div>
+  </div>
+</div>
+   
     <script src="./bootstrap-5.3.7-dist/bootstrap-5.3.7-dist/js/bootstrap.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
@@ -779,6 +815,61 @@
           this.classList.add("active");
         });
       });
+
+
+  const modal = document.getElementById('exampleModalCenter');
+  const video = document.getElementById('galleryVideo');
+  const source = video.querySelector('source');
+  
+  modal.addEventListener('shown.bs.modal', () => {
+    if (!source.src) {
+      source.src = source.dataset.src;
+      video.load();
+      video.play();
+    }
+  });
+  
+  modal.addEventListener('hidden.bs.modal', () => {
+    video.pause();
+    video.currentTime = 0; 
+    video.play();
+  });
+  
+  
+  const galleryContainer = document.getElementById('galleryContainer')
+
+  const galleries = [
+    { src: "./image/kalang-minyak.png", alt: "Kilang Minyak" },
+    { src: "./image/kalang-minyak2.png", alt: "Kilang Minyak 2" },
+    { src: "./image/pelabuhan.png", alt: "Pelabuhan" },
+    { src: "./image/pelabuhan.png", alt: "Pelabuhan" },
+    { src: "./image/g-5.png", alt: "Pelabuhan" },
+    { src: "./image/g-4.png", alt: "Pelabuhan" },
+    { src: "./image/g-7.png", alt: "Pelabuhan" },
+    { src: "./image/g-1.png", alt: "Pelabuhan" },
+    { src: "./image/g-2.png", alt: "Pelabuhan" },
+    { src: "./image/g-3.png", alt: "Pelabuhan" },
+    { src: "./image/g-6.png", alt: "Pelabuhan" },
+    { src: "./image/1.JPG", alt: "Pelabuhan" },
+    { src: "./image/2.jpeg", alt: "Pelabuhan" },
+    { src: "./image/3.JPG", alt: "Pelabuhan" },
+  ]
+
+const getGalleries = (() => {
+  galleries.forEach((item) => {
+    galleryContainer.innerHTML += `
+      <div class="col-md-4">
+        <div class="gallery-item-bottom">
+          <img src="${item.src}" class="img-fluid rounded gallery-img" alt="${item.alt}">
+        </div>
+      </div>
+    `;
+  });
+});
+
+      
+      getGalleries()
+
     </script>
   </body>
 </html>
